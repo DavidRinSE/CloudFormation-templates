@@ -1,3 +1,15 @@
+Parameters:
+  ProjectName:
+    Type: String
+    Default: test-cicd-proj
+  Repo:
+    Type: String
+  Branch:
+    Type: String
+    Default: main
+  ConnectionArn:
+    Type: String
+
 Resources:
   BuildExecutionRole:
     Type: AWS::IAM::Role
@@ -80,7 +92,7 @@ Resources:
         Type: LINUX_CONTAINER
         Image: aws/codebuild/standard:4.0
         ComputeType: BUILD_GENERAL1_SMALL
-      Name: serverless-proj
+      Name: !Ref ProjectName
       ServiceRole: !GetAtt BuildExecutionRole.Arn
       Source:
         Type: CODEPIPELINE
@@ -90,7 +102,7 @@ Resources:
       ArtifactStore:
         Location: !Ref 'ArtifactStoreBucket'
         Type: S3
-      Name: serverless-pipeline
+      Name: !Ref ProjectName
       RoleArn: !GetAtt PipelineRole.Arn
       Stages:
         - Name: Source
@@ -102,13 +114,13 @@ Resources:
                 Provider: CodeStarSourceConnection
                 Version: 1
               Configuration:
-                # ConnectionArn: ADD CONNECTION HERE
-                FullRepositoryId: 'DavidRinSE/ideal-octo-adventure'
-                BranchName: 'main'
+                ConnectionArn: !Ref ConnectionArn
+                FullRepositoryId: !Ref Repo
+                BranchName: !Ref Branch
                 DetectChanges: true
                 OutputArtifactFormat: "CODE_ZIP"
               OutputArtifacts:
-                - Name: "GitHubSource"
+                - Name: BuildArtifact
         - Name: Build
           Actions:
             - Name: CodeBuild
@@ -120,4 +132,4 @@ Resources:
               Configuration:
                 ProjectName: !Ref BuildProject
               InputArtifacts:
-                - Name: "GitHubSource"
+                - Name: BuildArtifact
