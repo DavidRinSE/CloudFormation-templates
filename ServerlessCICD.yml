@@ -102,7 +102,7 @@ Resources:
                 Provider: CodeStarSourceConnection
                 Version: 1
               Configuration:
-                ConnectionArn: 'arn:aws:codestar-connections:us-east-2:729568880770:connection/9e83eed5-20b3-4b22-a285-2a2bab3e7390'
+                # ConnectionArn: ADD CONNECTION HERE
                 FullRepositoryId: 'DavidRinSE/ideal-octo-adventure'
                 BranchName: 'main'
                 DetectChanges: true
