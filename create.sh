@@ -32,4 +32,4 @@ echo "Repo path: $repo"
 echo "Connection Arn: $connectionArn"
 echo "Branch: $branch"
 
-aws cloudformation create-stack --stack-name serverlesstest --template-body file://ServerlessCICD.yml --parameters ParameterKey=ProjectName,ParameterValue=$projectName ParameterKey=Repo,ParameterValue=$repo ParameterKey=Branch,ParameterValue=$branch ParameterKey=ConnectionArn,ParameterValue=$connectionArn --capabilities CAPABILITY_IAM \
+aws cloudformation create-stack --stack-name $projectName --template-url  --parameters ParameterKey=ProjectName,ParameterValue=$projectName ParameterKey=Repo,ParameterValue=$repo ParameterKey=Branch,ParameterValue=$branch ParameterKey=ConnectionArn,ParameterValue=$connectionArn --capabilities CAPABILITY_IAM \
