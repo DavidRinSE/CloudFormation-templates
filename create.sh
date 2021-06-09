@@ -32,4 +32,4 @@ echo "Repo path: $repo"
 echo "Connection Arn: $connectionArn"
 echo "Branch: $branch"
 
-aws cloudformation create-stack --stack-name $projectName --template-url  --parameters ParameterKey=ProjectName,ParameterValue=$projectName ParameterKey=Repo,ParameterValue=$repo ParameterKey=Branch,ParameterValue=$branch ParameterKey=ConnectionArn,ParameterValue=$connectionArn --capabilities CAPABILITY_IAM \
+aws cloudformation create-stack --stack-name $projectName --template-url https://ata-cloudfomation-template.s3.us-east-2.amazonaws.com/ata-cloudformation.template --parameters ParameterKey=ProjectName,ParameterValue=$projectName ParameterKey=Repo,ParameterValue=$repo ParameterKey=Branch,ParameterValue=$branch ParameterKey=ConnectionArn,ParameterValue=$connectionArn --capabilities CAPABILITY_IAM \
