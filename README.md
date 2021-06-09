@@ -1,7 +1,7 @@
 This CloudFormation template will create the necessary AWS roles and services for a CICD pippeline that runs when a new commit is made to your GitHub branch. 
 
 Prerequisites
-1. Have this repo cloned
+1. Have the create.sh file in your project folder
 2. Have AWS cli installed. You can test this is working by running `aws --version` in terminal. You can find install instructions here: 
 https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html
 3. Have AWS cli configured with your access key. You can find instructions to do this here:
@@ -11,7 +11,7 @@ https://docs.aws.amazon.com/dtconsole/latest/userguide/connections-create-github
 5. Have a Github repo with a buildspec.yml file that can be run by your new pipeline to build services specific to your project
 
 Running the bash script
-1. Open terminal and navigate to the root directory of this folder
+1. Open terminal and navigate to the root directory of your project where the `create.sh` script exists
 2. In terminal, run `bash create.sh` - this will ask for the following inputs to create your pipeline
  * Project Name -> Any name can be inputted here that will help identify these resources in the AWS console
  * Repo path -> This is the path to the repo that your pipeline should monitor and build. For example, the path to this repo is DavidRinSE/CloudFormation-templates
